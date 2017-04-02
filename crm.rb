@@ -1,6 +1,8 @@
 class CRM
 
-  def initialize
+  attr_accessor :crm_name
+  def initialize(crm_name)
+    @crm_name
 
   end
 
@@ -29,11 +31,11 @@ class CRM
   end
 
   def display_all_contacts
-    
+
   end
 
   def search_by_attribute
-    
+
   end
 
 
