@@ -31,7 +31,7 @@ class Crm
     when 3 then delete_contact
     when 4 then display_all_contacts
     when 5 then search_by_attribute
-    when 6 then exit(true)
+    when 6 then exit
     end
   end
 
@@ -39,9 +39,9 @@ class Crm
     l = 0
     attribute_list = []
     while l < @contact_attritbutes.length
-    puts "Please enter the #{@contact_attritbutes[l]}"
-    attribute_list[l] = gets.chomp
-    l += 1
+      puts "Please enter the #{@contact_attritbutes[l]}"
+      attribute_list[l] = gets.chomp
+      l += 1
     end
     Contact.create(attribute_list[0]=nil,attribute_list[1]=nil,attribute_list[2]=nil,attribute_list[3]=nil)
   end
@@ -68,7 +68,7 @@ class Crm
   end
 
   def dispaly_attributes
-    @contact_attritbutes.each {|att| puts "[#{@contact_attritbutes.index(att) +1 }]. #{att}"
+    @contact_attritbutes.each {|att| puts "[#{@contact_attritbutes.index(att) +1 }]. #{att}"}
     puts 'Enter a numer: '
   end
 
@@ -95,7 +95,7 @@ class Crm
     puts "Email: #{contact_list.email}"
     puts "Note: #{contact_list.note}"
     puts "---------------------------------"
-
+    end
   end
 
 

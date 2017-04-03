@@ -48,7 +48,7 @@ class Contact
   def self.delete_all
     puts "Are you sure? Y/N"
     ans = gets.chomp
-    if ans = "Y"
+    if ans == "Y"
     @@contacts = []
     end
   end
