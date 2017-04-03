@@ -42,6 +42,16 @@ class CRM
   end
 
   def modify_existing_contact
+    display_all_contacts
+    puts "Please enter the number from above list for the contact you would like to modify: "
+    id = gets.chomp.to_i
+    contact_to_be_modified = Contact.find(id)
+    dispaly_attributes
+    attribute_to_be_modified = gets.chomp.to_i
+    contact_attritbutes = ["first_name","last_name","email","note"]
+    puts "What is the new #{contact_attritbutes[attribute_to_be_modified-1]}"
+    new_attribute = gets.chomp
+    contact_to_be_modified.update( contact_attritbutes[attribute_to_be_modified-1], new_attribute )
 
 
   end
@@ -50,18 +60,22 @@ class CRM
 
   end
 
-  def display_all_contacts
-    Contact.all.map(&:full_name)
-
-  end
-
-  def search_by_attribute
+  def dispaly_attributes
     puts "Which attribute would you like to search by?"
     puts '[1] first name'
     puts '[2] last name'
     puts '[3] email'
     puts '[4] note'
     puts 'Enter a numer: '
+  end
+
+  def display_all_contacts
+    puts Contact.all.map(&:id,:full_name)
+
+  end
+
+  def search_by_attribute
+    dispaly_attributes
     attribute = gets.chomp.to_i
     contact_attritbutes = ["first_name","last_name","email","note"]
     puts "Please enter the #{contact_attritbutes[attribute -1]}: "
