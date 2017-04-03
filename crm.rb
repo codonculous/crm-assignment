@@ -51,6 +51,7 @@ class CRM
   end
 
   def display_all_contacts
+    Contact.all.map(&:full_name)
 
   end
 
@@ -65,7 +66,11 @@ class CRM
     contact_attritbutes = ["first_name","last_name","email","note"]
     puts "Please enter the #{contact_attritbutes[attribute -1]}: "
     attribute_value = gets.chomp
-    Contact.find_by( contact_attritbutes[attribute -1], attribute_value )
+    contact_list = Contact.find_by( contact_attritbutes[attribute -1], attribute_value )
+    contact_list.each do |contact|
+    puts "Name: #{contact_list.full_name}"
+    puts "Email: #{contact_list.email}"
+    puts "Note: #{contact_list.note}"
 
   end
 

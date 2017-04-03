@@ -35,7 +35,7 @@ class Contact
   # by specifying both the name of the attribute and the value
   # eg. searching for 'first_name', 'Betty' should return the first contact named Betty
   def self.find_by(attribute,value)
-    @@contacts.select {|contact| contact.send(attribute.to_sym) == value}[0]
+    @@contacts.select {|contact| contact.send(attribute.to_sym) == value}
   end
 
   # This method should delete all of the contacts
