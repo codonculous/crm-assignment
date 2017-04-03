@@ -26,7 +26,8 @@ class Contact
 
   # This method should accept an id as an argument
   # and return the contact who has that id
-  def self.find
+  def self.find(idnum)
+    @@contacts.select {|contact| contact.id == idnum}
 
   end
 
