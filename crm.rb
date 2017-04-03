@@ -2,9 +2,8 @@ require_relative "contact"
 
 class Crm
 
-  attr_accessor :crm_name
   def initialize
-
+    @contact_attritbutes = ["first_name","last_name","email","note"]
   end
 
   def main_menu
@@ -37,20 +36,28 @@ class Crm
   end
 
   def add_new_contact
-    Contact.create(first_name=nil,last_name=nil,email=nil,note=nil)
+    l = 0
+    attribute_list = []
+    while l < @contact_attritbutes.length
+    puts "Please enter the #{@contact_attritbutes[l]}"
+    attribute_list[l] = gets.chomp
+    l += 1
+    end
+    Contact.create(attribute_list[0]=nil,attribute_list[1]=nil,attribute_list[2]=nil,attribute_list[3]=nil)
   end
 
   def modify_existing_contact
     display_all_contacts
+    puts "---------------------------------"
     puts "Please enter the number from above list for the contact you would like to modify: "
     id = gets.chomp.to_i
     contact_to_be_modified = Contact.find(id)
+    puts "Which attribute would you like to modify?"
     dispaly_attributes
     attribute_to_be_modified = gets.chomp.to_i
-    contact_attritbutes = ["first_name","last_name","email","note"]
-    puts "What is the new #{contact_attritbutes[attribute_to_be_modified-1]}"
+    puts "What is the new #{@contact_attritbutes[attribute_to_be_modified-1]}"
     new_attribute = gets.chomp
-    contact_to_be_modified.update( contact_attritbutes[attribute_to_be_modified-1], new_attribute )
+    contact_to_be_modified.update( @contact_attritbutes[attribute_to_be_modified-1], new_attribute )
   end
 
   def delete_contact
@@ -61,11 +68,7 @@ class Crm
   end
 
   def dispaly_attributes
-    puts "Which attribute would you like to search by?"
-    puts '[1] first name'
-    puts '[2] last name'
-    puts '[3] email'
-    puts '[4] note'
+    @contact_attritbutes.each {|att| puts "[#{@contact_attritbutes.index(att) +1 }]. #{att}"
     puts 'Enter a numer: '
   end
 
@@ -81,16 +84,17 @@ class Crm
   end
 
   def search_by_attribute
+    puts "Which attribute would you like to search by?"
     dispaly_attributes
     attribute = gets.chomp.to_i
-    contact_attritbutes = ["first_name","last_name","email","note"]
-    puts "Please enter the #{contact_attritbutes[attribute -1]}: "
+    puts "Please enter the #{@contact_attritbutes[attribute -1]}: "
     attribute_value = gets.chomp
-    contact_list = Contact.find_by( contact_attritbutes[attribute -1], attribute_value )
+    contact_list = Contact.find_by( @contact_attritbutes[attribute -1], attribute_value )
     contact_list.each do |contact|
     puts "Name: #{contact_list.full_name}"
     puts "Email: #{contact_list.email}"
     puts "Note: #{contact_list.note}"
+    puts "---------------------------------"
 
   end
 
