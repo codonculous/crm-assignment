@@ -4,7 +4,7 @@ class Contact
   # This method should initialize the contact's attributes
   attr_accessor :first_name, :last_name, :email, :note
   attr_reader :id
-  def initialize(first_name,last_name,email,note)
+  def initialize(first_name=nil,last_name=nil,email=nil,note=nil)
     @first_name = first_name
     @last_name  = last_name
     @email      = email
@@ -15,8 +15,8 @@ class Contact
 
   # This method should call the initializer,
   # store the newly created contact, and then return it
-  def self.create(first_name,last_name,email,note)
-    @@contacts.push(Contact.new(first_name,last_name,email,note))
+  def self.create(first_name=nil,last_name=nil,email=nil,note=nil)
+    @@contacts.push(Contact.new(first_name=nil,last_name=nil,email=nil,note=nil))
   end
 
   # This method should return all of the existing contacts

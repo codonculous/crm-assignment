@@ -1,3 +1,5 @@
+require_relative "contact"
+
 class CRM
 
   attr_accessor :crm_name
@@ -24,15 +26,24 @@ class CRM
     puts 'Enter a number: '
   end
 
-  def call_option
-
+  def call_option(user_selected)
+    case user_selected
+    when 1 then add_new_contact
+    when 2 then modify_existing_contact
+    when 3 then modify_existing_contact
+    when 4 then modify_existing_contact
+    when 5 then modify_existing_contact
+    when 6 then modify_existing_contact
+    end
   end
 
   def add_new_contact
+    Contact.create(first_name=nil,last_name=nil,email=nil,note=nil)
 
   end
 
   def modify_existing_contact
+
 
   end
 
