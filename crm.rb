@@ -11,7 +11,7 @@ class CRM
   def main_menu
     while true # repeat indefinitely
       print_main_menu
-      user_selected = gets.to_i
+      user_selected = gets.chomp.to_i
       call_option(user_selected)
     end
   end
@@ -55,7 +55,18 @@ class CRM
   end
 
   def search_by_attribute
-  
+    puts "Which attribute would you like to search by?"
+    puts '[1] first name'
+    puts '[2] last name'
+    puts '[3] email'
+    puts '[4] note'
+    puts 'Enter a numer: '
+    attribute = gets.chomp.to_i
+    contact_attritbutes = ["first_name","last_name","email","note"]
+    puts "Please enter the #{contact_attritbutes[attribute -1]}: "
+    attribute_value = gets.chomp
+    Contact.find_by( contact_attritbutes[attribute -1], attribute_value )
+
   end
 
 
