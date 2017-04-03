@@ -1,13 +1,15 @@
 class Contact
   @@contacts = []
-  @@id_counter = 0
+  @@id_counter = 1
   # This method should initialize the contact's attributes
+  attr_accessor :first_name, :last_name, :email, :note
+  attr_reader :id
   def initialize(first_name,last_name,email,note)
     @first_name = first_name
     @last_name  = last_name
     @email      = email
     @note       = note
-    @id = @@id
+    @id = @@id_counter
     @@id_counter += 1
   end
 
@@ -19,7 +21,7 @@ class Contact
 
   # This method should return all of the existing contacts
   def self.all
-
+    @@contacts
   end
 
   # This method should accept an id as an argument
@@ -32,7 +34,9 @@ class Contact
   # 1. which of the contact's attributes you want to update
   # 2. the new value for that attribute
   # and then make the appropriate change to the contact
-  def update
+  def update(attribute,new_value)
+
+     self.send( (attribute + "=").to_sym, new_value)
 
   end
 
