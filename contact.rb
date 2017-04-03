@@ -19,6 +19,12 @@ class Contact
     @@contacts.push(Contact.new(first_name=nil,last_name=nil,email=nil,note=nil))
   end
 
+  # This method should delete the contact
+  # HINT: Check the Array class docs for built-in methods that might be useful here
+  def self.delete(idnum)
+    @@contacts.delete_if {|contact| contact.id == idnum.to_i}
+  end
+
   # This method should return all of the existing contacts
   def self.all
     @@contacts
@@ -57,12 +63,6 @@ class Contact
   # and then make the appropriate change to the contact
   def update(attribute,new_value)
      self.send( (attribute + "=").to_sym, new_value)
-  end
-
-  # This method should delete the contact
-  # HINT: Check the Array class docs for built-in methods that might be useful here
-  def delete(idnum)
-    @@contacts.delete_if {|contact| contact.id == idnum.to_i}
   end
 
   # Feel free to add other methods here, if you need them.

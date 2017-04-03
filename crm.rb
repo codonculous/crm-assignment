@@ -1,10 +1,9 @@
 require_relative "contact"
 
-class CRM
+class Crm
 
   attr_accessor :crm_name
-  def initialize(crm_name)
-    @crm_name
+  def initialize
 
   end
 
@@ -52,12 +51,13 @@ class CRM
     puts "What is the new #{contact_attritbutes[attribute_to_be_modified-1]}"
     new_attribute = gets.chomp
     contact_to_be_modified.update( contact_attritbutes[attribute_to_be_modified-1], new_attribute )
-
-
   end
 
   def delete_contact
-
+    display_all_contacts
+    puts "Please enter the number from above list for the contact you would like to delete: "
+    id = gets.chomp.to_i
+    Contact.delete( Contact.find(id) )
   end
 
   def dispaly_attributes
@@ -70,7 +70,13 @@ class CRM
   end
 
   def display_all_contacts
-    puts Contact.all.map(&:id,:full_name)
+    id_list = Contact.all.map(&:id)
+    full_name_list = Contact.all.map(&:full_name)
+    l = 0
+    while l < id_list.length
+      puts "#{id_list[l]}. #{full_name_list[l]}"
+      l += 1
+    end
 
   end
 
