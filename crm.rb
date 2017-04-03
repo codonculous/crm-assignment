@@ -30,16 +30,15 @@ class CRM
     case user_selected
     when 1 then add_new_contact
     when 2 then modify_existing_contact
-    when 3 then modify_existing_contact
-    when 4 then modify_existing_contact
-    when 5 then modify_existing_contact
-    when 6 then modify_existing_contact
+    when 3 then delete_contact
+    when 4 then display_all_contacts
+    when 5 then search_by_attribute
+    when 6 then exit(true)
     end
   end
 
   def add_new_contact
     Contact.create(first_name=nil,last_name=nil,email=nil,note=nil)
-
   end
 
   def modify_existing_contact
@@ -56,7 +55,7 @@ class CRM
   end
 
   def search_by_attribute
-
+  
   end
 
 
